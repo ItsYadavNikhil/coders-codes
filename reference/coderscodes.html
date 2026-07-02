@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CODERS_CODES // ELITE DEV COMMUNITY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,100;0,400;0,700;0,800;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black: #080808;
+      --white: #F2F2F0;
+      --green: #00FF41;
+      --magenta: #FF2DFF;
+      --gold: #FFD700;
+      --red: #FF2424;
+      --border: 3px solid var(--green);
+      --border-white: 3px solid var(--white);
+      --shadow: 6px 6px 0px var(--green);
+      --shadow-mag: 6px 6px 0px var(--magenta);
+      --shadow-gold: 6px 6px 0px var(--gold);
+      --mono: 'JetBrains Mono', monospace;
+      --display: 'Space Grotesk', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--mono);
+      overflow-x: hidden;
+      cursor: crosshair;
+    }
+
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--black);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--green);
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--black);
+      border-bottom: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--green);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-logo .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 18px;
+      background: var(--green);
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.1s;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--black) !important;
+      font-weight: 800;
+      padding: 10px 24px;
+      border: 3px solid var(--black);
+      box-shadow: 4px 4px 0 var(--white);
+      transition: transform 0.1s, box-shadow 0.1s;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .nav-cta:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--white);
+      color: var(--black) !important;
+    }
+
+    /* ─── GRID OVERLAY ─── */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      padding: 64px 40px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 80px 0 60px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--green);
+      border: 1px solid var(--green);
+      padding: 6px 14px;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+    }
+
+    .hero-h1 {
+      font-family: var(--display);
+      font-size: clamp(60px, 10vw, 140px);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 40px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-h1 .accent {
+      color: var(--green);
+    }
+
+    .glitch {
+      position: relative;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+    }
+
+    .glitch::before {
+      color: var(--magenta);
+      clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
+      animation: glitch-top 3s infinite linear;
+    }
+
+    .glitch::after {
+      color: var(--green);
+      clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+      animation: glitch-bot 3s infinite linear;
+    }
+
+    @keyframes glitch-top {
+
+      0%,
+      90%,
+      100% {
+        transform: none;
+        opacity: 0;
+      }
+
+      91% {
+        transform: translateX(-4px);
+        opacity: 0.8;
+      }
+
+      93% {
+        transform: translateX(4px);
+        opacity: 0.8;
+      }
+
+      95% {
+        transform: translateX(0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes glitch-bot {
+
+      0%,
+      88%,
+      100% {
+        transform: none;
+        opacity: 0;
+      }
+
+      89% {
+        transform: translateX(4px);
+        opacity: 0.8;
+      }
+
+      91% {
+        transform: translateX(-4px);
+        opacity: 0.8;
+      }
+
+      93% {
+        transform: translateX(0);
+        opacity: 0;
+      }
+    }
+
+    .hero-sub {
+      font-family: var(--mono);
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+      color: rgba(242, 242, 240, 0.55);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .hero-sub span {
+      color: var(--green);
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 72px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--green);
+      color: var(--black);
+      font-family: var(--mono);
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: 3px solid var(--green);
+      box-shadow: 6px 6px 0 var(--white);
+      text-decoration: none;
+      transition: transform 0.1s, box-shadow 0.1s;
+      cursor: crosshair;
+    }
+
+    .btn-primary:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 3px 3px 0 var(--white);
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: 3px solid var(--white);
+      box-shadow: 6px 6px 0 rgba(255, 255, 255, 0.15);
+      text-decoration: none;
+      transition: transform 0.1s, box-shadow 0.1s, border-color 0.15s, color 0.15s;
+      cursor: crosshair;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--green);
+      color: var(--green);
+      transform: translate(3px, 3px);
+      box-shadow: 3px 3px 0 rgba(0, 255, 65, 0.2);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 0;
+      border: var(--border);
+      width: fit-content;
+    }
+
+    .hero-stat {
+      padding: 18px 36px;
+      border-right: var(--border);
+    }
+
+    .hero-stat:last-child {
+      border-right: none;
+    }
+
+    .hero-stat-num {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--green);
+      display: block;
+    }
+
+    .hero-stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: rgba(242, 242, 240, 0.5);
+      text-transform: uppercase;
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* corner decoration */
+    .corner-tag {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: rgba(0, 255, 65, 0.4);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-wrap {
+      background: var(--green);
+      border-top: 3px solid var(--black);
+      border-bottom: 3px solid var(--black);
+      overflow: hidden;
+      padding: 14px 0;
+      white-space: nowrap;
+    }
+
+    .marquee-inner {
+      display: inline-flex;
+      gap: 0;
+      animation: marquee 20s linear infinite;
+    }
+
+    .marquee-inner:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .marquee-item {
+      font-family: var(--mono);
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--black);
+      text-transform: uppercase;
+      padding: 0 40px;
+    }
+
+    .marquee-dot {
+      color: var(--black);
+      opacity: 0.4;
+      padding: 0;
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section {
+      padding: 100px 40px;
+    }
+
+    .section-max {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      border-top: var(--border);
+      background: #0D0D0D;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 60px;
+    }
+
+    .about-statement {
+      font-family: var(--display);
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--white);
+    }
+
+    .about-statement em {
+      font-style: normal;
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-thickness: 3px;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: var(--border);
+    }
+
+    .about-stat-box {
+      padding: 32px;
+      border-bottom: var(--border);
+      border-right: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-stat-box:nth-child(even) {
+      border-right: none;
+    }
+
+    .about-stat-box:nth-child(3),
+    .about-stat-box:nth-child(4) {
+      border-bottom: none;
+    }
+
+    .about-stat-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--green);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s;
+    }
+
+    .about-stat-box:hover::before {
+      transform: scaleY(1);
+    }
+
+    .about-stat-n {
+      font-family: var(--display);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      display: block;
+    }
+
+    .about-stat-t {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: rgba(242, 242, 240, 0.5);
+      text-transform: uppercase;
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* ─── TRACKS ─── */
+    #tracks {
+      border-top: var(--border);
+    }
+
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 60px;
+      border: var(--border);
+    }
+
+    .track-card {
+      padding: 48px 36px;
+      border-right: var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.15s;
+      cursor: crosshair;
+    }
+
+    .track-card:last-child {
+      border-right: none;
+    }
+
+    .track-card:hover {
+      background: rgba(0, 255, 65, 0.04);
+    }
+
+    .track-icon {
+      font-size: 2.5rem;
+      margin-bottom: 24px;
+      display: block;
+      filter: grayscale(1) brightness(2);
+      transition: filter 0.2s;
+    }
+
+    .track-card:hover .track-icon {
+      filter: none;
+    }
+
+    .track-num {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--green);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .track-name {
+      font-family: var(--display);
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .track-desc {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: rgba(242, 242, 240, 0.55);
+      margin-bottom: 32px;
+    }
+
+    .track-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .track-tag {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border: 1px solid currentColor;
+    }
+
+    .track-card:nth-child(1) .track-name {
+      color: var(--green);
+    }
+
+    .track-card:nth-child(1) .track-tag {
+      color: var(--green);
+    }
+
+    .track-card:nth-child(1):hover {
+      box-shadow: inset 0 0 60px rgba(0, 255, 65, 0.05);
+    }
+
+    .track-card:nth-child(2) .track-name {
+      color: var(--magenta);
+    }
+
+    .track-card:nth-child(2) .track-tag {
+      color: var(--magenta);
+    }
+
+    .track-card:nth-child(2):hover {
+      box-shadow: inset 0 0 60px rgba(255, 45, 255, 0.05);
+    }
+
+    .track-card:nth-child(3) .track-name {
+      color: var(--gold);
+    }
+
+    .track-card:nth-child(3) .track-tag {
+      color: var(--gold);
+    }
+
+    .track-card:nth-child(3):hover {
+      box-shadow: inset 0 0 60px rgba(255, 215, 0, 0.05);
+    }
+
+    .track-cta {
+      margin-top: 28px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: inherit;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .track-card:hover .track-cta {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    #how {
+      border-top: var(--border);
+      background: #0D0D0D;
+    }
+
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 60px;
+      position: relative;
+    }
+
+    .steps-row::after {
+      content: '';
+      position: absolute;
+      top: 52px;
+      left: calc(16.6% + 20px);
+      right: calc(16.6% + 20px);
+      height: 3px;
+      background: repeating-linear-gradient(90deg, var(--green) 0, var(--green) 12px, transparent 12px, transparent 20px);
+      z-index: 0;
+    }
+
+    .step {
+      padding: 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step:first-child {
+      padding-left: 0;
+    }
+
+    .step:last-child {
+      padding-right: 0;
+    }
+
+    .step-num {
+      font-family: var(--display);
+      font-size: 6rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      opacity: 0.15;
+      display: block;
+      margin-bottom: -20px;
+    }
+
+    .step-icon {
+      display: inline-block;
+      width: 64px;
+      height: 64px;
+      background: var(--green);
+      color: var(--black);
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-title {
+      font-family: var(--display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .step-desc {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: rgba(242, 242, 240, 0.5);
+    }
+
+    /* ─── STATS BAR ─── */
+    #stats-bar {
+      background: var(--green);
+      border-top: 3px solid var(--black);
+      border-bottom: 3px solid var(--black);
+      padding: 0;
+    }
+
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-cell {
+      padding: 40px 32px;
+      border-right: 3px solid var(--black);
+      text-align: center;
+    }
+
+    .stat-cell:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      color: var(--black);
+      display: block;
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: rgba(0, 0, 0, 0.6);
+      text-transform: uppercase;
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials {
+      border-top: var(--border);
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 60px;
+    }
+
+    .testi-card {
+      padding: 40px;
+      border: var(--border);
+      margin-left: -3px;
+      position: relative;
+      transition: transform 0.15s;
+    }
+
+    .testi-card:first-child {
+      margin-left: 0;
+    }
+
+    .testi-card:hover {
+      transform: translate(-4px, -4px);
+      z-index: 2;
+    }
+
+    .testi-card:nth-child(1):hover {
+      box-shadow: var(--shadow);
+    }
+
+    .testi-card:nth-child(2):hover {
+      box-shadow: var(--shadow-mag);
+    }
+
+    .testi-card:nth-child(3):hover {
+      box-shadow: var(--shadow-gold);
+    }
+
+    .testi-quote {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      line-height: 1.9;
+      color: rgba(242, 242, 240, 0.75);
+      margin-bottom: 32px;
+    }
+
+    .testi-quote::before {
+      content: '// ';
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .testi-avatar {
+      width: 44px;
+      height: 44px;
+      background: var(--green);
+      color: var(--black);
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .testi-card:nth-child(2) .testi-avatar {
+      background: var(--magenta);
+    }
+
+    .testi-card:nth-child(3) .testi-avatar {
+      background: var(--gold);
+    }
+
+    .testi-name {
+      font-family: var(--display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .testi-role {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: rgba(242, 242, 240, 0.4);
+      letter-spacing: 0.1em;
+      margin-top: 3px;
+    }
+
+    /* ─── CTA BLOCK ─── */
+    #cta {
+      border-top: var(--border);
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(0, 255, 65, 0.06) 0%, transparent 70%);
+    }
+
+    .cta-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      width: 100%;
+      position: relative;
+    }
+
+    .cta-h2 {
+      font-family: var(--display);
+      font-size: clamp(48px, 8vw, 110px);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 48px;
+    }
+
+    .cta-h2 span {
+      color: var(--green);
+    }
+
+    .cta-form {
+      display: flex;
+      gap: 0;
+      max-width: 600px;
+    }
+
+    .cta-input {
+      flex: 1;
+      background: transparent;
+      border: 3px solid var(--green);
+      border-right: none;
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      padding: 16px 20px;
+      outline: none;
+      letter-spacing: 0.05em;
+    }
+
+    .cta-input::placeholder {
+      color: rgba(0, 255, 65, 0.4);
+    }
+
+    .cta-input:focus {
+      background: rgba(0, 255, 65, 0.04);
+    }
+
+    .cta-submit {
+      background: var(--green);
+      color: var(--black);
+      border: 3px solid var(--green);
+      font-family: var(--mono);
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      cursor: crosshair;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .cta-submit:hover {
+      background: var(--black);
+      color: var(--green);
+    }
+
+    .cta-fine {
+      margin-top: 16px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: rgba(242, 242, 240, 0.3);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      border-top: var(--border);
+      padding: 48px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(0, 255, 65, 0.15);
+    }
+
+    .footer-logo {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    .footer-tagline {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: rgba(242, 242, 240, 0.4);
+      line-height: 1.7;
+      max-width: 260px;
+    }
+
+    .footer-col-title {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: rgba(242, 242, 240, 0.55);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover {
+      color: var(--green);
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+    }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: rgba(242, 242, 240, 0.3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-pill {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 7px 16px;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .social-pill:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── SCANLINE ─── */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.03) 2px,
+          rgba(0, 0, 0, 0.03) 4px);
+      pointer-events: none;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .tracks-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .track-card {
+        border-right: none;
+        border-bottom: var(--border);
+      }
+
+      .steps-row {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .steps-row::after {
+        display: none;
+      }
+
+      .testi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testi-card {
+        margin-left: 0;
+        margin-top: -3px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stats-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat-cell:nth-child(2) {
+        border-right: none;
+      }
+
+      .stat-cell:nth-child(3) {
+        border-top: 3px solid var(--black);
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-stat {
+        border-right: none;
+        border-bottom: var(--border);
+      }
+
+      .hero-stat:last-child {
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-h1 {
+        font-size: clamp(44px, 12vw, 80px);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .cta-form {
+        flex-direction: column;
+      }
+
+      .cta-input {
+        border-right: 3px solid var(--green);
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .stats-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .glitch::before,
+      .glitch::after {
+        display: none;
+      }
+
+      .marquee-inner {
+        animation: none;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ─── NAVBAR ─── -->
+  <nav>
+    <a href="#" class="nav-logo">
+      &lt;/&gt;&nbsp;CODERS_CODES<span class="cursor"></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#tracks">Tracks</a></li>
+      <li><a href="#how">Process</a></li>
+      <li><a href="#testimonials">Community</a></li>
+      <li><a href="#cta" class="nav-cta">Apply Now →</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero" class="grid-bg">
+    <div class="hero-inner">
+      <span class="hero-label">▶ Elite Dev Community · Est. 2024</span>
+      <h1 class="hero-h1">
+        <span class="glitch" data-text="CODE.">CODE.</span><br>
+        <span class="accent">BUILD.</span><br>
+        <span class="glitch" data-text="DOMINATE.">DOMINATE.</span>
+      </h1>
+      <p class="hero-sub">
+        Not a bootcamp. Not a course.<br>
+        A <span>war room</span> for developers who refuse to settle.<br>
+        DSA · Full-Stack · AI/ML — all under one roof.
+      </p>
+      <div class="hero-ctas">
+        <a href="#cta" class="btn-primary">Apply Now →</a>
+        <a href="#tracks" class="btn-ghost">Explore Tracks</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">1,200+</span>
+          <span class="hero-stat-label">Active Members</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">500+</span>
+          <span class="hero-stat-label">Problems Solved</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">3</span>
+          <span class="hero-stat-label">Expert Tracks</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">48h</span>
+          <span class="hero-stat-label">Response Time</span>
+        </div>
+      </div>
+    </div>
+    <div class="corner-tag">CODERS_CODES // V1.0 // 2024</div>
+  </section>
+
+  <!-- ─── MARQUEE ─── -->
+  <div class="marquee-wrap">
+    <div class="marquee-inner">
+      <span class="marquee-item">★ DSA MASTERY</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <span class="marquee-item">FULL-STACK ENGINEERING</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <span class="marquee-item">AI/ML PIPELINES</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <span class="marquee-item">OPEN SOURCE</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <span class="marquee-item">REAL PROJECTS</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <span class="marquee-item">HACKATHONS</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <span class="marquee-item">ELITE COMMUNITY</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <!-- duplicate for seamless loop -->
+      <span class="marquee-item">★ DSA MASTERY</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <span class="marquee-item">FULL-STACK ENGINEERING</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <span class="marquee-item">AI/ML PIPELINES</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <span class="marquee-item">OPEN SOURCE</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <span class="marquee-item">REAL PROJECTS</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <span class="marquee-item">HACKATHONS</span>
+      <span class="marquee-item marquee-dot">//</span>
+      <span class="marquee-item">ELITE COMMUNITY</span>
+      <span class="marquee-item marquee-dot">//</span>
+    </div>
+  </div>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about">
+    <div class="section-max">
+      <span class="section-label reveal">// about us</span>
+      <h2 class="section-title reveal">Who We Are</h2>
+      <div class="about-grid">
+        <div class="about-statement reveal">
+          Not a bootcamp.<br>Not a course.<br>A <em>war room</em> for devs who build real things, ship fast, and never
+          stop growing.
+        </div>
+        <div class="about-stats reveal">
+          <div class="about-stat-box">
+            <span class="about-stat-n">1.2K</span>
+            <span class="about-stat-t">Members worldwide</span>
+          </div>
+          <div class="about-stat-box">
+            <span class="about-stat-n">500+</span>
+            <span class="about-stat-t">Curated problems</span>
+          </div>
+          <div class="about-stat-box">
+            <span class="about-stat-n">3</span>
+            <span class="about-stat-t">Core tracks</span>
+          </div>
+          <div class="about-stat-box">
+            <span class="about-stat-n">200+</span>
+            <span class="about-stat-t">Projects shipped</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRACKS ─── -->
+  <section id="tracks">
+    <div class="section-max">
+      <span class="section-label reveal">// our tracks</span>
+      <h2 class="section-title reveal">Pick Your War.</h2>
+      <div class="tracks-grid reveal">
+
+        <div class="track-card">
+          <span class="track-icon">🧩</span>
+          <span class="track-num">TRACK_01</span>
+          <h3 class="track-name">DSA<br>Mastery</h3>
+          <p class="track-desc">
+            Raw algorithmic power. From brute-force to optimal. Arrays, trees, graphs, DP — we don't skip the hard
+            parts. We eat them for breakfast.
+          </p>
+          <div class="track-tags">
+            <span class="track-tag">Algorithms</span>
+            <span class="track-tag">Data Structures</span>
+            <span class="track-tag">LeetCode</span>
+            <span class="track-tag">Interviews</span>
+          </div>
+          <a href="#" class="track-cta" style="color:var(--green)">Enter Track →</a>
+        </div>
+
+        <div class="track-card">
+          <span class="track-icon">🏗️</span>
+          <span class="track-num">TRACK_02</span>
+          <h3 class="track-name">Full<br>Stack</h3>
+          <p class="track-desc">
+            From zero to deployed. React, Node, databases, CI/CD pipelines, cloud infra. Ship real products that real
+            users touch.
+          </p>
+          <div class="track-tags">
+            <span class="track-tag">React</span>
+            <span class="track-tag">Node.js</span>
+            <span class="track-tag">Databases</span>
+            <span class="track-tag">DevOps</span>
+          </div>
+          <a href="#" class="track-cta" style="color:var(--magenta)">Enter Track →</a>
+        </div>
+
+        <div class="track-card">
+          <span class="track-icon">🤖</span>
+          <span class="track-num">TRACK_03</span>
+          <h3 class="track-name">AI/ML<br>Systems</h3>
+          <p class="track-desc">
+            Build and deploy intelligence. Neural nets, LLM integration, pipelines, fine-tuning, and production-grade ML
+            — not toy notebooks.
+          </p>
+          <div class="track-tags">
+            <span class="track-tag">PyTorch</span>
+            <span class="track-tag">LLMs</span>
+            <span class="track-tag">MLOps</span>
+            <span class="track-tag">Research</span>
+          </div>
+          <a href="#" class="track-cta" style="color:var(--gold)">Enter Track →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOW IT WORKS ─── -->
+  <section id="how">
+    <div class="section-max">
+      <span class="section-label reveal">// the process</span>
+      <h2 class="section-title reveal">How It Works</h2>
+      <div class="steps-row">
+        <div class="step reveal">
+          <span class="step-num">01</span>
+          <div class="step-icon">⚡</div>
+          <h3 class="step-title">Apply & Get Vetted</h3>
+          <p class="step-desc">
+            No tourists. We review every application. Tell us where you are, where you're going. Serious devs only — no
+            judgment on level, just on intent.
+          </p>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">02</span>
+          <div class="step-icon" style="background:var(--magenta)">🛠</div>
+          <h3 class="step-title">Pick Your Track</h3>
+          <p class="step-desc">
+            Choose DSA, Full-Stack, or AI/ML. Get access to structured content, live sessions, peer accountability
+            groups, and a curated problem set.
+          </p>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">03</span>
+          <div class="step-icon" style="background:var(--gold); color: var(--black)">🚀</div>
+          <h3 class="step-title">Ship & Dominate</h3>
+          <p class="step-desc">
+            Collaborate on real builds. Compete in hackathons. Land offers. Every member who ships a project gets
+            featured. No fluff — just proof of work.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── STATS BAR ─── -->
+  <div id="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-cell">
+        <span class="stat-num" data-target="1200">0</span>
+        <span class="stat-lbl">Members &amp; Growing</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num" data-target="500">0</span>
+        <span class="stat-lbl">Curated Problems</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num" data-target="200">0</span>
+        <span class="stat-lbl">Projects Shipped</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num" data-target="48">0</span>
+        <span class="stat-lbl">Hours Avg Response</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section id="testimonials">
+    <div class="section-max">
+      <span class="section-label reveal">// community signals</span>
+      <h2 class="section-title reveal">From the<br>War Room</h2>
+      <div class="testi-grid" style="margin-top: 60px;">
+
+        <div class="testi-card reveal">
+          <p class="testi-quote">
+            "I went from confused about binary search to solving hard graph problems in 6 weeks. The peer pressure here
+            is actually motivating — everyone's building something."
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">AK</div>
+            <div>
+              <div class="testi-name">Arjun Kumar</div>
+              <div class="testi-role">DSA Track · SDE at Razorpay</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <p class="testi-quote">
+            "I shipped my first SaaS in 3 months. The full-stack track had no hand-holding — which is exactly what I
+            needed. Real problems, real deadlines."
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">PR</div>
+            <div>
+              <div class="testi-name">Priya Rathore</div>
+              <div class="testi-role">Full-Stack Track · Building in public</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <p class="testi-quote">
+            "Fine-tuned my first model and deployed a RAG pipeline to production. The AI/ML track is intense but the
+            mentors actually understand the bleeding edge."
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">SM</div>
+            <div>
+              <div class="testi-name">Siddharth Mehta</div>
+              <div class="testi-role">AI/ML Track · ML Researcher</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── JOIN CTA ─── -->
+  <section id="cta">
+    <div class="cta-bg"></div>
+    <div class="cta-inner">
+      <span class="section-label reveal">// ready?</span>
+      <h2 class="cta-h2 reveal">
+        LEVEL<br>THE <span>F*CK</span><br>UP.
+      </h2>
+      <div class="reveal">
+        <form class="cta-form" onsubmit="return false;">
+          <input class="cta-input" type="email" placeholder="your@email.com" autocomplete="off">
+          <button class="cta-submit">Request Access →</button>
+        </form>
+        <p class="cta-fine">// No spam. Just signal. Reviewed within 48 hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">&lt;/&gt; CODERS_CODES</div>
+        <p class="footer-tagline">An elite developer community for those who build first and ask questions later. DSA ·
+          Full-Stack · AI/ML.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Tracks</div>
+        <ul class="footer-links">
+          <li><a href="#">DSA Mastery</a></li>
+          <li><a href="#">Full-Stack</a></li>
+          <li><a href="#">AI/ML Systems</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Community</div>
+        <ul class="footer-links">
+          <li><a href="#">Discord Server</a></li>
+          <li><a href="#">Weekly Sessions</a></li>
+          <li><a href="#">Hackathons</a></li>
+          <li><a href="#">Leaderboard</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Links</div>
+        <ul class="footer-links">
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Apply Now</a></li>
+          <li><a href="#">Manifesto</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2024 CODERS_CODES // ALL RIGHTS RESERVED // BUILD OR DIE</span>
+      <div class="footer-socials">
+        <a href="#" class="social-pill">GitHub</a>
+        <a href="#" class="social-pill">Discord</a>
+        <a href="#" class="social-pill">LinkedIn</a>
+        <a href="#" class="social-pill">Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── SCROLL REVEAL ──
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => io.observe(el));
+
+    // ── COUNT-UP ──
+    const counters = document.querySelectorAll('.stat-num[data-target]');
+    const countIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = +el.dataset.target;
+        const suffix = target >= 1000 ? '+' : (target === 48 ? 'h' : '+');
+        const displayTarget = target >= 1000 ? (target / 1000).toFixed(1) + 'K' : target;
+        let start = 0;
+        const end = target >= 1000 ? target / 1000 : target;
+        const step = end / 60;
+        const timer = setInterval(() => {
+          start += step;
+          if (start >= end) {
+            el.textContent = (target >= 1000 ? end.toFixed(1) + 'K' : end) + suffix;
+            clearInterval(timer);
+          } else {
+            el.textContent = (target >= 1000 ? start.toFixed(1) + 'K' : Math.floor(start)) + suffix;
+          }
+        }, 16);
+        countIO.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(el => countIO.observe(el));
+
+    // ── NAV SCROLL EFFECT ──
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      nav.style.borderBottomColor = window.scrollY > 50 ? 'var(--green)' : 'var(--green)';
+      nav.style.background = window.scrollY > 50 ? 'rgba(8,8,8,0.97)' : 'var(--black)';
+    });
+  </script>
+</body>
+
+</html>
