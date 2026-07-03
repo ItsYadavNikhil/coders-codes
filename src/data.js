@@ -34,20 +34,20 @@ export const tracks = [
 export const testimonials = [
   {
     quote: '"I went from confused about binary search to solving hard graph problems in 6 weeks. The peer pressure here is actually motivating — everyone\'s building something."',
-    initials: 'AK',
-    name: 'Arjun Kumar',
-    role: 'DSA Track · SDE at Razorpay'
+    initials: 'KG',
+    name: 'Karthik Garg',
+    role: 'DSA Track · Student CSE'
   },
   {
     quote: '"I shipped my first SaaS in 3 months. The full-stack track had no hand-holding — which is exactly what I needed. Real problems, real deadlines."',
-    initials: 'PR',
-    name: 'Priya Rathore',
+    initials: 'IP',
+    name: 'Isha Patel',
     role: 'Full-Stack Track · Building in public'
   },
   {
     quote: '"Fine-tuned my first model and deployed a RAG pipeline to production. The AI/ML track is intense but the mentors actually understand the bleeding edge."',
-    initials: 'SM',
-    name: 'Siddharth Mehta',
+    initials: 'MV',
+    name: 'Maheshwar V.',
     role: 'AI/ML Track · ML Researcher'
   }
 ];

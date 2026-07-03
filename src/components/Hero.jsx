@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section id="hero" className="grid-bg">
       <div className="hero-inner">
-        <span className="hero-label">▶ Elite Dev Community · Est. 2024</span>
+        <span className="hero-label">▶ Elite Dev Community · Est. 2026</span>
         <h1 className="hero-h1">
           <span className="glitch" data-text="CODE.">CODE.</span><br />
           <span className="accent">BUILD.</span><br />
@@ -25,7 +25,7 @@ export default function Hero() {
             <span className="hero-stat-label">Active Members</span>
           </div>
           <div className="hero-stat">
-            <span className="hero-stat-num">500+</span>
+            <span className="hero-stat-num">300+</span>
             <span className="hero-stat-label">Problems Solved</span>
           </div>
           <div className="hero-stat">
@@ -33,12 +33,12 @@ export default function Hero() {
             <span className="hero-stat-label">Expert Tracks</span>
           </div>
           <div className="hero-stat">
-            <span className="hero-stat-num">48h</span>
+            <span className="hero-stat-num">24h</span>
             <span className="hero-stat-label">Response Time</span>
           </div>
         </div>
       </div>
-      <div className="corner-tag">CODERS_CODES // V1.0 // 2024</div>
+      <div className="corner-tag">CODERS_CODES // V1.0 // 2026</div>
     </section>
   );
 }

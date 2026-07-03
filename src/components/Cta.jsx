@@ -36,7 +36,7 @@ export default function Cta() {
             <input className="cta-input" type="email" placeholder="your@email.com" autoComplete="off" />
             <button className="cta-submit">Request Access →</button>
           </form>
-          <p className="cta-fine">// No spam. Just signal. Reviewed within 48 hours.</p>
+          <p className="cta-fine">// No spam. Just signal. Reviewed within 24 hours.</p>
         </div>
       </div>
     </section>

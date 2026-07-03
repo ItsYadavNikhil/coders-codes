@@ -21,10 +21,10 @@ export default function Footer() {
         <div>
           <div className="footer-col-title">Community</div>
           <ul className="footer-links">
-            <li><a href="#">Discord Server</a></li>
+            <li><a href="https://discord.gg/E8TN26MPy">Discord Server</a></li>
             <li><a href="#">Weekly Sessions</a></li>
-            <li><a href="#">Hackathons</a></li>
-            <li><a href="#">Leaderboard</a></li>
+            <li><a href="https://coders.codes/">Hackathons</a></li>
+            <li><a href="https://winner.coders.codes/">Leaderboard</a></li>
           </ul>
         </div>
         <div>
@@ -38,10 +38,10 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <span className="footer-copy">© 2024 CODERS_CODES // ALL RIGHTS RESERVED // BUILD OR DIE</span>
+        <span className="footer-copy">© 2026 CODERS_CODES // ALL RIGHTS RESERVED // BUILD OR DIE</span>
         <div className="footer-socials">
-          <a href="#" className="social-pill">GitHub</a>
-          <a href="#" className="social-pill">Discord</a>
+          <a href="https://github.com/ItsYadavNikhil/coders-codes/" className="social-pill">GitHub</a>
+          <a href="https://discord.gg/E8TN26MPy" className="social-pill">Discord</a>
           <a href="#" className="social-pill">LinkedIn</a>
           <a href="#" className="social-pill">Twitter</a>
         </div>

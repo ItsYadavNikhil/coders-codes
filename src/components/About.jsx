@@ -36,7 +36,7 @@ export default function About() {
               <span className="about-stat-t">Members worldwide</span>
             </div>
             <div className="about-stat-box">
-              <span className="about-stat-n">500+</span>
+              <span className="about-stat-n">300+</span>
               <span className="about-stat-t">Curated problems</span>
             </div>
             <div className="about-stat-box">
@@ -44,7 +44,7 @@ export default function About() {
               <span className="about-stat-t">Core tracks</span>
             </div>
             <div className="about-stat-box">
-              <span className="about-stat-n">200+</span>
+              <span className="about-stat-n">150+</span>
               <span className="about-stat-t">Projects shipped</span>
             </div>
           </div>

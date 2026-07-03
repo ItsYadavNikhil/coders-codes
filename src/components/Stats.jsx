@@ -42,15 +42,15 @@ export default function Stats() {
           <span className="stat-lbl">Members &amp; Growing</span>
         </div>
         <div className="stat-cell">
-          <span className="stat-num" data-target="500">0</span>
+          <span className="stat-num" data-target="300">0</span>
           <span className="stat-lbl">Curated Problems</span>
         </div>
         <div className="stat-cell">
-          <span className="stat-num" data-target="200">0</span>
+          <span className="stat-num" data-target="150">0</span>
           <span className="stat-lbl">Projects Shipped</span>
         </div>
         <div className="stat-cell">
-          <span className="stat-num" data-target="48">0</span>
+          <span className="stat-num" data-target="24">0</span>
           <span className="stat-lbl">Hours Avg Response</span>
         </div>
       </div>

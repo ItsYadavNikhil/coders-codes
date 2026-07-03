@@ -22,7 +22,7 @@ export default function Navbar() {
         <li><a href="#tracks">Tracks</a></li>
         <li><a href="#how">Process</a></li>
         <li><a href="#testimonials">Community</a></li>
-        <li><a href="#cta" className="nav-cta">Apply Now →</a></li>
+        <li><a href="#cta" className="nav-cta">Sign In →</a></li>
       </ul>
     </nav>
   );
